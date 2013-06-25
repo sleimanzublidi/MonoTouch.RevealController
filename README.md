@@ -8,6 +8,9 @@ Provides a new style of menu/details navigation control.
 
 Inspired by [this](http://dribbble.com/shots/1114754-Social-Feed-iOS7) post on Dribbble.
 
+You can see it in action [here](http://youtu.be/_yq3nHdQ190).
+
+
 Requirements
 ------------
 

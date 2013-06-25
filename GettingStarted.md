@@ -1,14 +1,36 @@
-You may want to redescribe your component here, but the purpose of this
-document is to guide the user through creating their first app using
-your component.
+Provides a new style of menu/details navigation control.
+
+Inspired by [this](http://dribbble.com/shots/1114754-Social-Feed-iOS7) post on Dribbble.
 
 ```csharp
-using MyComponentNameSpace;
+using MonoTouch.Reveal;
 ...
 
-public override void ViewDidLoad ()
+RevealController revealViewController;
+
+public override bool FinishedLaunching(UIApplication app, NSDictionary options)
 {
-	// Be sure to include code samples for all supported platforms
+    // Instantiate the controller
+    revealController = new RevealController();
+    
+    // Assign the Menu view controller
+    // If you don want to create your own menu, you can use the MenuViewController
+    // I've included it to help creating the menu with some animations.
+	var menu = new MenuViewController();
+	menu.AddItem<UIViewController>("Label 1");
+	menu.AddItem<UIViewController>("Label 2");
+	menu.AddItem<UIViewController>("Label 3");   	
+	menu.ResolveController = (label, type) =>
+	{
+		// Return a UIViewController of the required type
+	};
+	revealController.MenuView = menu;
+
+    // Assign the Current view controller which is seen first before you touch the menu button.
+    revealController.CurrentView = new UIViewController("firstviewnib", null);
+
+    // Assign the controller to be displayed!
+    window.RootViewController = revealController;     
 }
 ```
 
